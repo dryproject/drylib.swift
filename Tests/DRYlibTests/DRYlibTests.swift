@@ -1,15 +1,14 @@
+/* This is free and unencumbered software released into the public domain. */
+
 import XCTest
 @testable import DRYlib
 
 final class DRYlibTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(DRYlib().text, "Hello, World!")
-    }
+  func test_something() {
+    // TODO
+  }
 
-    static var allTests = [
-        ("testExample", testExample),
-    ]
+  static var allTests = [
+    ("test_something", test_something),
+  ]
 }
