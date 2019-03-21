@@ -6,6 +6,8 @@ import XCTest
 final class LengthTests: XCTestCase {
   let zero = Length<Int>(0)
   let one = Length<Int>(1)
+  let two = Length<Int>(2)
+  let three = Length<Int>(3)
   let fortyTwo = Length<Int>(42)
 
   func test_Comparable() {
@@ -24,9 +26,33 @@ final class LengthTests: XCTestCase {
     // TODO
   }
 
+  func test_Numeric() {
+    XCTAssertEqual(zero + zero, zero)
+    XCTAssertEqual(zero + 0, zero)
+    XCTAssertEqual(zero - zero, zero)
+    XCTAssertEqual(zero - 0, zero)
+    XCTAssertEqual(zero * zero, zero)
+    XCTAssertEqual(zero * 0, zero)
+    XCTAssertEqual(one + zero, one)
+    XCTAssertEqual(one + one, two)
+    XCTAssertEqual(one + 0, one)
+    XCTAssertEqual(one + 1, two)
+    XCTAssertEqual(one - zero, one)
+    XCTAssertEqual(one - 0, one)
+    XCTAssertEqual(one - one, zero)
+    XCTAssertEqual(one - 1, zero)
+    XCTAssertEqual(one * zero, zero)
+    XCTAssertEqual(one * 0, zero)
+    XCTAssertEqual(one * one, one)
+    XCTAssertEqual(one * 1, one)
+    XCTAssertEqual(one / one, one)
+    XCTAssertEqual(one / 1, one)
+  }
+
   static var allTests = [
     ("test_Comparable", test_Comparable),
     ("test_Equatable", test_Equatable),
     ("test_Hashable", test_Hashable),
+    ("test_Numeric", test_Numeric),
   ]
 }

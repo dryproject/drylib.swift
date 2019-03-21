@@ -38,63 +38,75 @@ public struct Length<T>: Comparable, Equatable, Hashable, Numeric
   public var magnitude: Length<T>.Magnitude {
     return self.value.magnitude
   }
+}
 
-  /// Conformance to Comparable
-  public static func <(lhs: Length<T>, rhs: Length<T>) -> Bool {
+/// Conformance to Comparable
+public extension Length {
+  static func <(lhs: Length<T>, rhs: Length<T>) -> Bool {
     return lhs.value < rhs.value
   }
+}
 
-  /// Conformance to Numeric
-  public static func +(lhs: Length<T>, rhs: Length<T>) -> Length<T> {
+/// Conformance to Numeric
+public extension Length {
+  static func +(lhs: Length<T>, rhs: Length<T>) -> Length<T> {
     return Length<T>(lhs.value + rhs.value)
   }
 
-  public static func +(lhs: Length<T>, rhs: T) -> Length<T> {
-    return Length<T>(lhs.value + rhs)
-  }
-
-  /// Conformance to Numeric
-  public static func -(lhs: Length<T>, rhs: Length<T>) -> Length<T> {
+  static func -(lhs: Length<T>, rhs: Length<T>) -> Length<T> {
     return Length<T>(lhs.value - rhs.value)
   }
 
-  public static func -(lhs: Length<T>, rhs: T) -> Length<T> {
-    return Length<T>(lhs.value - rhs)
-  }
-
-  /// Conformance to Numeric
-  public static func *(lhs: Length<T>, rhs: Length<T>) -> Length<T> {
+  static func *(lhs: Length<T>, rhs: Length<T>) -> Length<T> {
     return Length<T>(lhs.value * rhs.value)
   }
 
-  public static func *(lhs: Length<T>, rhs: T) -> Length<T> {
-    return Length<T>(lhs.value * rhs)
-  }
-
-  /// Conformance to Numeric
-  public static func +=(lhs: inout Length<T>, rhs: Length<T>) {
+  static func +=(lhs: inout Length<T>, rhs: Length<T>) {
     lhs.value += rhs.value
   }
 
-  public static func +=(lhs: inout Length<T>, rhs: T) {
-    lhs.value += rhs
-  }
-
-  /// Conformance to Numeric
-  public static func -=(lhs: inout Length<T>, rhs: Length<T>) {
+  static func -=(lhs: inout Length<T>, rhs: Length<T>) {
     lhs.value -= rhs.value
   }
 
-  public static func -=(lhs: inout Length<T>, rhs: T) {
+  static func *=(lhs: inout Length<T>, rhs: Length<T>) {
+    lhs.value *= rhs.value
+  }
+}
+
+/// Convenience overloads
+public extension Length {
+  static func +(lhs: Length<T>, rhs: T) -> Length<T> {
+    return Length<T>(lhs.value + rhs)
+  }
+
+  static func -(lhs: Length<T>, rhs: T) -> Length<T> {
+    return Length<T>(lhs.value - rhs)
+  }
+
+  static func *(lhs: Length<T>, rhs: T) -> Length<T> {
+    return Length<T>(lhs.value * rhs)
+  }
+
+  static func +=(lhs: inout Length<T>, rhs: T) {
+    lhs.value += rhs
+  }
+
+  static func -=(lhs: inout Length<T>, rhs: T) {
     lhs.value -= rhs
   }
 
-  /// Conformance to Numeric
-  public static func *=(lhs: inout Length<T>, rhs: Length<T>) {
-    lhs.value *= rhs.value
+  static func *=(lhs: inout Length<T>, rhs: T) {
+    lhs.value *= rhs
+  }
+}
+
+public extension Length where T == Int {
+  static func /(lhs: Length<T>, rhs: Length<T>) -> Length<T> {
+    return Length<T>(lhs.value / rhs.value)
   }
 
-  public static func *=(lhs: inout Length<T>, rhs: T) {
-    lhs.value *= rhs
+  static func /(lhs: Length<T>, rhs: T) -> Length<T> {
+    return Length<T>(lhs.value / rhs)
   }
 }
