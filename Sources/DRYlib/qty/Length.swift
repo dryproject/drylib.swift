@@ -49,9 +49,17 @@ public struct Length<T>: Comparable, Equatable, Hashable, Numeric
     return Length<T>(lhs.value + rhs.value)
   }
 
+  public static func +(lhs: Length<T>, rhs: T) -> Length<T> {
+    return Length<T>(lhs.value + rhs)
+  }
+
   /// Conformance to Numeric
   public static func -(lhs: Length<T>, rhs: Length<T>) -> Length<T> {
     return Length<T>(lhs.value - rhs.value)
+  }
+
+  public static func -(lhs: Length<T>, rhs: T) -> Length<T> {
+    return Length<T>(lhs.value - rhs)
   }
 
   /// Conformance to Numeric
@@ -59,9 +67,17 @@ public struct Length<T>: Comparable, Equatable, Hashable, Numeric
     return Length<T>(lhs.value * rhs.value)
   }
 
+  public static func *(lhs: Length<T>, rhs: T) -> Length<T> {
+    return Length<T>(lhs.value * rhs)
+  }
+
   /// Conformance to Numeric
   public static func +=(lhs: inout Length<T>, rhs: Length<T>) {
     lhs.value += rhs.value
+  }
+
+  public static func +=(lhs: inout Length<T>, rhs: T) {
+    lhs.value += rhs
   }
 
   /// Conformance to Numeric
@@ -69,8 +85,16 @@ public struct Length<T>: Comparable, Equatable, Hashable, Numeric
     lhs.value -= rhs.value
   }
 
+  public static func -=(lhs: inout Length<T>, rhs: T) {
+    lhs.value -= rhs
+  }
+
   /// Conformance to Numeric
   public static func *=(lhs: inout Length<T>, rhs: Length<T>) {
     lhs.value *= rhs.value
+  }
+
+  public static func *=(lhs: inout Length<T>, rhs: T) {
+    lhs.value *= rhs
   }
 }
