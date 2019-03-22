@@ -101,7 +101,25 @@ public extension Length {
   }
 }
 
+public extension Length where T == Double {
+  prefix static func -(arg: Length<T>) -> Length<T> {
+    return Length<T>(-arg.value)
+  }
+
+  static func /(lhs: Length<T>, rhs: Length<T>) -> Length<T> {
+    return Length<T>(lhs.value / rhs.value)
+  }
+
+  static func /(lhs: Length<T>, rhs: T) -> Length<T> {
+    return Length<T>(lhs.value / rhs)
+  }
+}
+
 public extension Length where T == Int {
+  prefix static func -(arg: Length<T>) -> Length<T> {
+    return Length<T>(-arg.value)
+  }
+
   static func /(lhs: Length<T>, rhs: Length<T>) -> Length<T> {
     return Length<T>(lhs.value / rhs.value)
   }
